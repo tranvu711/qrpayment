@@ -361,6 +361,8 @@ func (q *QRCode) IsValid() error {
 		return q.isValidVNPay()
 	case QRTypeVNPayWallet:
 		return q.isValidVNPayWallet()
+	case QRTypeMomo:
+		return q.isValidMomoWallet()
 	}
 	return errors.New("Invalid QR type. Use Predefined QR Code constants.")
 }
@@ -374,6 +376,8 @@ func (q *QRCode) GenerateText() (string, error) {
 		return q.generateVNPayQRText()
 	case QRTypeVNPayWallet:
 		return q.generateVNPayWalletQRText()
+	case QRTypeMomo:
+		return q.generateMoMoWalletQRText()
 	}
 	return "", errors.New("Invalid QR type. Use Predefined QR Code constants.")
 }

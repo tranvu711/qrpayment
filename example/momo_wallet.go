@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	// Create a VNPAY Wallet QR code
+	// Create a Momo QR code
 	qr, _ := qrpayment.NewQRPayment(&qrpayment.QRCode{
-		QRType: qrpayment.QRTypeVNPayWallet,
+		QRType: qrpayment.QRTypeMomo,
 	})
 
 	err := qr.SetCustomerMobileNumber("0901455890")
@@ -24,13 +24,20 @@ func main() {
 		return
 	}
 
+	// Set the purpose of transaction, aka note
+	err = qr.SetPurposeOfTransaction("Payment note")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
 	text, err := qr.GenerateText()
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("QR Text:", text)
 
-	err = qr.GeneratePNG("./vnpay_wallet_qr.png")
+	err = qr.GeneratePNG("./momo_wallet_qr.png")
 	if err != nil {
 		log.Fatal(err)
 		return
