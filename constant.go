@@ -11,6 +11,8 @@ type Bank struct {
 type QRCode struct {
 	AdditionalData      map[string]string
 	CountryCode         string
+	CityName            string
+	PostalCode          string
 	TransactionCurrency string
 	BankBin             string
 	AccountNo           string
@@ -18,12 +20,30 @@ type QRCode struct {
 	Amount              *int
 	Content             string
 	TransferType        string
+	QRType              string
+
+	// VNPay data
+	MerchantID       string
+	MerchantIdentify string
+	MerchantName     string
+	TerminalID       string
+	TerminalName     string
+	MCC              string
 }
 
 const (
-	VietQRService = "A000000727"
+	VietQRService                = "A000000727"
+	VNPAYMerchantCompanyService  = "A000000775"
+	VNPAYMerchantPersonalService = "970436"
+	VNPAYWALLETService           = "908401"
 )
+
+const (
+	QRFormatVersion = "01"
+)
+
 const EmptyString = ""
+
 const (
 	BillNumber                    = "01"
 	CustomerMobileNumber          = "02"
@@ -51,12 +71,52 @@ const (
 	CurrencyPHP                   = "608"
 	CurrencySGD                   = "702"
 	CurrencyTHB                   = "764"
-	PayloadFormatIndicator        = "000201"
-	TransactionCurrency           = "53"
-	CountryCode                   = "5802VN"
 	CRC16Tag                      = "6304"
 	StaticQR                      = "11"
 	DynamicQR                     = "12"
-	TransferToAccount             = "TransferToAccount" // Chuyển nhanh Napas247 đến tài khoản
-	TransferToCard                = "TransferToCard"    // Chuyển nhanh Napas247 đến thẻ
+	VNPayWalletQR                 = "10"
+	TransferToAccount             = "TransferToAccount"
+	TransferToCard                = "TransferToCard"
+)
+
+const (
+	QRTypeVietQR      = "VIETQR"
+	QRTypeVNPay       = "VNPAY"
+	QRTypeVNPayWallet = "VNPayWallet"
+	QRTypeMomo        = "MOMO"
+)
+
+const (
+	FieldQRVersion        = "00"
+	FieldQRQRType         = "01"
+	FieldQRMCC            = "52"
+	FieldQRCurrency       = "53"
+	FieldQRCountry        = "58"
+	FieldQRMerchantName   = "59"
+	FieldQRAmount         = "54"
+	FieldQRAdditionalData = "62"
+	FieldQRCityName       = "60"
+	FieldQRPostalCode     = "61"
+
+	// VietQR
+	FieldVietQRIdentity                        = "38"
+	FiledVietQRIdentitySubService              = "00"
+	FiledVietQRIdentitySubCustomer             = "01"
+	FiledVietQRIdentitySubCustomerBankBin      = "00"
+	FiledVietQRIdentitySubCustomerBankInfo     = "01"
+	FiledVietQRIdentitySubCustomerBankInfoType = "02"
+
+	// VNPAY
+	FieldVNPayIdentity              = "26"
+	FieldVNPayIdentitySubService    = "00"
+	FieldVNPayIdentitySubMerchantId = "01"
+)
+
+const (
+	CityMaxLength                 = 15
+	PostalCodeMaxLength           = 10
+	StoreLabelMaxLength           = 25
+	TerminalLabelMaxLength        = 25
+	BillNumberMaxLength           = 25
+	CustomerMobileNumberMaxLength = 25
 )
