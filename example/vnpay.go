@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/tranvu711/qrpayment"
 	"log"
-	"qrpayment"
 	"strconv"
 	"time"
 )
@@ -15,14 +15,14 @@ func main() {
 	})
 
 	// Set the merchant ID
-	err := qr.SetMerchantId("0316213597", true)
+	err := qr.SetMerchantId("0318560067", true)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
 	// Set the merchant name
-	err = qr.SetMerchantName("WESCAN VIETNAM")
+	err = qr.SetMerchantName("WESCAN")
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -57,7 +57,7 @@ func main() {
 	}
 
 	// Set the mcc code
-	err = qr.SetMCC("4816")
+	err = qr.SetMCC("7379")
 	if err != nil {
 		log.Fatal(err)
 		return
