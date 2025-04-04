@@ -1,4 +1,4 @@
-module qrpayment
+module github.com/tranvu711/qrpayment
 
 go 1.20
 
