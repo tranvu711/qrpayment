@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/tranvu711/qrpayment"
 	"log"
-	"qrpayment"
 )
 
 func main() {
