@@ -75,8 +75,8 @@ const (
 	StaticQR                      = "11"
 	DynamicQR                     = "12"
 	VNPayWalletQR                 = "10"
-	TransferToAccount             = "TransferToAccount"
-	TransferToCard                = "TransferToCard"
+	TransferToAccount             = "QRIBFTTA"
+	TransferToCard                = "QRIBFTTC"
 )
 
 const (

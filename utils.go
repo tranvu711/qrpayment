@@ -3,6 +3,7 @@ package qrpayment
 import (
 	"fmt"
 	"github.com/sigurn/crc16"
+	"sort"
 	"strings"
 )
 
@@ -17,7 +18,16 @@ import (
 // - A string representing the TLV formatted data.
 func generateTLVFormat(fields map[string]interface{}) string {
 	var tlv []string
-	for key, value := range fields {
+	// Extract and sort the keys
+	keys := make([]string, 0, len(fields))
+	for key := range fields {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+
+	// Process fields in sorted order
+	for _, key := range keys {
+		value := fields[key]
 		switch v := value.(type) {
 		case string:
 			tlv = append(tlv, fmt.Sprintf("%s%02d%s", key, len(v), v))
